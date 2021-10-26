@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Dog {
-		private String name,breed,tA,tB,gender;
+	private String name,breed,tA,tB,gender;
   private int age,data,genome;
   private boolean genomeInitialized = false;
   private Random rand = new Random();
@@ -73,7 +73,7 @@ public class Dog {
 	int b = nibbleExtract(genome, 2);
 	int c = nibbleExtract(genome, 3);
 	int d = nibbleExtract(genome, 4);
-	System.out.println(a+", "+b+", "+c+", "+d);
+	//System.out.println(a+", "+b+", "+c+", "+d);
     switch(a) {
 		case 0: breed = new String("German Shepherd"); break;
 		case 1: breed = new String("Pomeranian"); break;
@@ -97,7 +97,7 @@ public class Dog {
 		case 0: case 1: case 10: tA = new String("Competitive"); break;
 		case 2: case 3: case 11: tA = new String("Gluttonous"); break;
 		case 4: case 5: case 12: tA = new String("Stubborn"); break;
-		case 6: case 7: case 13: tA = new String("mrpoole"); break;
+		case 6: case 7: case 13: tA = new String("Sweaty"); break;
 		case 8: case 9: case 14: tA = new String("Smart"); break;
 		default: tA = new String("Competitive"); break;
 	}
@@ -107,7 +107,7 @@ public class Dog {
 		case 4: case 5: case 12: tB = new String("Hyperactive"); break;
 		case 6: case 7: case 13: tB = new String("Muscular"); break;
 		case 8: case 9: case 14: tB = new String("Lazy"); break;
-		default: tA = new String("Friendly"); break;
+		default: tB = new String("Friendly"); break;
 	}
 	switch(d) {
 		case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: gender = new String("Male"); break;
@@ -124,7 +124,7 @@ public class Dog {
   }
   public void summary() {
     if(genomeInitialized){
-		System.out.println("Your dog, "+name+" is "+tA+", "+tB+" and "+gender+". ");
+		System.out.println("Your dog, \""+name+"\" is "+tA+", "+tB+" and "+gender+". ");
 		System.out.println("Your dog is "+age+" years old and is a "+breed);
     }
   }
