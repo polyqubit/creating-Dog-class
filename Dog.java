@@ -55,6 +55,28 @@ public class Dog {
   public void setGenome() {
     genome = rand.nextInt(65536);
     genomeInitialized = true;
+	int a = nibbleExtract(genome, 1);
+	int b = nibbleExtract(genome, 2);
+	int c = nibbleExtract(genome, 3);
+	int d = nibbleExtract(genome, 4);
+    switch(a) {
+		case 0: breed = new String("German Shepherd");
+		case 1: breed = new String("Pomeranian");
+		case 2: breed = new String("Pug");
+		case 3: breed = new String("Golden Retriever");
+		case 4: breed = new String("Shiba Inu");
+		case 5: breed = new String("Poodle");
+		case 6: breed = new String("Dachshund");
+		case 7: breed = new String("Bulldog");
+		case 8: breed = new String("Dalmatian");
+		case 9: breed = new String("Tibetan Mastiff");
+		case 10: breed = new String("Corgi");
+		case 11: breed = new String("Beagle");
+		case 12: breed = new String("Collie");
+		case 13: breed = new String("Great Pyrenees");
+		case 14: breed = new String("Shetland Sheepdog");
+		case 15: breed = new String("Alaskan Mamalute");
+	}
   }
   public void editGenome(int genome) {
     if(genomeInitialized){
