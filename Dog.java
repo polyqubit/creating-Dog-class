@@ -140,7 +140,7 @@ public class Dog {
 3 - aggressive, gains friendship 0.5x as fast
 4 - stubborn, takes 1.5x as many repetitions to teach a trick
 5 - hyperactive, gains 2x friendship from activities
-6 - mrpoole, plays LoL
+6 - mrpoole(sweaty), plays LoL
 7 - muscular, 1.5x stamina, 1.5x friendship from activities
 8 - smart, takes 0.5x as many repetitions to teach a trick
 9 - lazy, gains 0.5x as much friendship from activities, 0.75x stamina
