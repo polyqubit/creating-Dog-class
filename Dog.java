@@ -60,18 +60,23 @@ public class Dog {
   public void setGenome() {
     genome = rand.nextInt(65536);
     genomeInitialized = true;
-	updateGenome();
+	  updateGenome();
   }
   public void editGenome(int genome) {
     if(genomeInitialized){
       this.genome = genome;
-	  updateGenome();
+	    updateGenome();
     }
   }
-  public void readGenome() {
-    if(genomeInitialized){
+  public int readGenome(boolean print) {
+    if(genomeInitialized&&print) {
       System.out.println(String.format("0x%08X", genome));
+      return genome;
     }
+    else if(genomeInitialized) {
+      return genome;
+    }
+    else {return 0;}
   }
   public void updateGenome() {
 	int a = nibbleExtract(genome, 1);
@@ -116,6 +121,19 @@ public class Dog {
 	}
 	if((d%2)==0) {gender = new String("Male");}
 	else {gender = new String("Female");}
+  }
+  public String readStat(int inp) {
+    switch(inp) {
+      case 0: return name;
+      case 1: return breed;
+      case 2: return tA;
+      case 3: return tB;
+      case 4: return gender;
+      default: return "null";
+    }
+  }
+  public int readAge() {
+    return age;
   }
   public void rename(String name) {
     this.name = name;
