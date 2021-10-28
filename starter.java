@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main{
+public class starter{
 	public static void main(String args[]) {
     Scanner sc = new Scanner(System.in);
     int cPet = 0;
