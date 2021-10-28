@@ -1,7 +1,7 @@
 import java.util.Random;
 public class Dog {
-	private String name,breed,tA,tB,gender;
-  private int age,data,genome;
+  private String name,breed,tA,tB,gender = "null";
+  private int age,data,genome = 1;
   private boolean genomeInitialized = false;
   private Random rand = new Random();
   /**
@@ -49,6 +49,11 @@ public class Dog {
   }
   public Dog(String name, int age) {
     this.name = name;
+    this.age = age;
+    genome = 0x0000;
+  }
+  public Dog(int age) {
+    name = new String("Clifford II");
     this.age = age;
     genome = 0x0000;
   }
@@ -109,10 +114,8 @@ public class Dog {
 		case 8: case 9: case 14: tB = new String("Lazy"); break;
 		default: tB = new String("Friendly"); break;
 	}
-	switch(d) {
-		case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: gender = new String("Male"); break;
-		default: gender = new String("Female"); break;
-	}
+	if((d%2)==0) {gender = new String("Male");}
+	else {gender = new String("Female");}
   }
   public void rename(String name) {
     this.name = name;
