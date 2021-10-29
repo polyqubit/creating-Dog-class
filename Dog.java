@@ -63,10 +63,9 @@ public class Dog {
 	  updateGenome();
   }
   public void editGenome(int genome) {
-    if(genomeInitialized){
       this.genome = genome;
-	    updateGenome();
-    }
+	  genomeInitialized = true;
+	  updateGenome();
   }
   public int readGenome(boolean print) {
     if(genomeInitialized&&print) {

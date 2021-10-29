@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class starter{
 	public static void main(String args[]) {
     Scanner sc = new Scanner(System.in);
-    int cPet = 0;
     System.out.println("Welcome to PetCo! Are you here to adopt an animal?\n[Type 1,2, or 3 for a dog, cat, or bird, or any other letter to quit.]");
     String inp = sc.nextLine();
 	  int adorpt = 0;
@@ -37,20 +36,28 @@ public class starter{
               break;
             }
           }
-          Dog adopted;
+          Dog adopted = new Dog("D",0);
           switch(adorpt) {
             case 1:
               System.out.println("You've adopted a "+A.readStat(1)+"!\nWhat would you like to name your dog?");
-              inp = sc.nextLine();
-              
+			  adopted.editGenome(A.readGenome(false));
             break;
             case 2:
               System.out.println("You've adopted a "+B.readStat(1)+"!\nWhat would you like to name your dog?");
+			  adopted.editGenome(B.readGenome(false));
             break;
             case 3:
               System.out.println("You've adopted a "+C.readStat(1)+"!\nWhat would you like to name your dog?");
+			  adopted.editGenome(C.readGenome(false));
             break;
           }
+		  inp = sc.nextLine();
+          adopted.rename(inp);
+		  System.out.println("Congratulations on adopting a dog! Would you like to hear about its personality?\n[Press 1 to read its summary or anything else to continue]");
+		  inp = sc.nextLine();
+		  if(inp.equals("1")){
+			adopted.summary();
+		  }
         break;
         case "2":
           System.out.println("Sorry, we don't have any of those at the moment...(i was lazy lol)");
