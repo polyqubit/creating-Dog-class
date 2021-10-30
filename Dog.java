@@ -2,23 +2,18 @@ import java.util.Random;
 public class Dog {
   private String name,breed,tA,tB,gender = "null";
   private int age,genome = 1;
-  private int data = 0x0
+  private double stamina = 255;
+  private double hunger = 255; //full is 255
+  private double friendship = 0;
   private boolean genomeInitialized = false;
   private Random rand = new Random();
-  public float[] multipliers = {1,1,1,1,1};
+  public float[] multipliers = {1,1,1,1,1,1};
   /**
     GENE description(starting from least sig):
     breed/species
     trait(described bottom of file)
     secondary trait
     gender
-  **/
-  /**
-    DATA description(starting from least sig)
-    hunger value
-    friend value
-    stamina
-    activity
   **/
   /**
     SKILLS are stored in arrays, which are:
@@ -61,10 +56,11 @@ public class Dog {
   /**
 	MULTIPLIER array:
 	0 - friendship gain
-	1 - 
-	2 - 
-	3 - 
-	4 - 
+	1 - hunger gain
+	2 - stamina gain
+	3 - reps
+	4 - competitive bonus
+	5 - activity bonus
   **/
   public Dog() {
     name = new String("Clifford");
@@ -111,6 +107,7 @@ public class Dog {
 	int b = nibbleExtract(genome, 2);
 	int c = nibbleExtract(genome, 3);
 	int d = nibbleExtract(genome, 4);
+	for(int i=0;i<multipliers.length;i++) {multipliers[i]=1;}
 	//System.out.println(a+", "+b+", "+c+", "+d);
     switch(a) {
 		case 0: breed = new String("German Shepherd"); break;
@@ -132,19 +129,19 @@ public class Dog {
 		default: breed = new String("Dog"); break;
 	}
 	switch(b) {
-		case 0: case 1: case 10: tA = new String("Competitive"); break;
-		case 2: case 3: case 11: tA = new String("Gluttonous"); break;
-		case 4: case 5: case 12: tA = new String("Stubborn"); break;
+		case 0: case 1: case 10: tA = new String("Competitive"); multipliers[4]*=1.5; multipliers[3]*=0.5; break;
+		case 2: case 3: case 11: tA = new String("Gluttonous"); multipliers[1]*=2; break;
+		case 4: case 5: case 12: tA = new String("Stubborn"); multipliers[3]*=1.5; break;
 		case 6: case 7: case 13: tA = new String("Sweaty"); break;
-		case 8: case 9: case 14: tA = new String("Smart"); break;
-		default: tA = new String("Competitive"); break;
+		case 8: case 9: case 14: tA = new String("Smart"); multipliers[4]*=1.5; break;
+		default: tA = new String("Competitive"); multipliers[4]*=1.5; multipliers[3]*=0.5; break;
 	}
 	switch(c) {
-		case 0: case 1: case 10: tB = new String("Friendly"); break;
-		case 2: case 3: case 11: tB = new String("Aggressive"); break;
-		case 4: case 5: case 12: tB = new String("Hyperactive"); break;
-		case 6: case 7: case 13: tB = new String("Muscular"); break;
-		case 8: case 9: case 14: tB = new String("Lazy"); break;
+		case 0: case 1: case 10: tB = new String("Friendly"); multipliers[0]*=2; break;
+		case 2: case 3: case 11: tB = new String("Aggressive"); multipliers[0]*=0.5; break;
+		case 4: case 5: case 12: tB = new String("Hyperactive"); multipliers[1]*=1.5; multipliers[5]*=2; break;
+		case 6: case 7: case 13: tB = new String("Muscular"); multipliers[2]*=1.5; multipliers[5]*=1.5; break;
+		case 8: case 9: case 14: tB = new String("Lazy"); multipliers[2]*=0.75; multipliers[5]*=0.5; break;
 		default: tB = new String("Friendly"); break;
 	}
 	if((d%2)==0) {gender = new String("Male");}
@@ -172,7 +169,7 @@ public class Dog {
     //return bit;
   }
   public int readStamina() {
-	  
+	return nibbleExtract(data,3);
   }
   public void summary() {
     if(genomeInitialized){
@@ -189,7 +186,7 @@ public class Dog {
 3 - aggressive, gains friendship 0.5x as fast
 4 - stubborn, takes 1.5x as many repetitions to teach a trick
 5 - hyperactive, gains 2x friendship from activities, hunger gain 1.5x faster
-6 - mrpoole(sweaty), plays LoL
+6 - sweaty, just sweats a lot lol
 7 - muscular, 1.5x stamina, 1.5x friendship from activities
 8 - smart, takes 0.5x as many repetitions to teach a trick
 9 - lazy, gains 0.5x as much friendship from activities, 0.75x stamina

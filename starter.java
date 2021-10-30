@@ -61,7 +61,7 @@ public class starter{
 		  //activities
 		  while(true) {
 			  System.out.println("What would you like to do with "+adopted.readStat(0)+"?");
-			  System.out.println("[Options: feed, teach, play, exit]")
+			  System.out.println("[Options: feed, teach, play, exit]");
 			  inp = sc.nextLine();
 			  switch(inp) {
 				  case "feed":
