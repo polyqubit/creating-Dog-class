@@ -1,9 +1,11 @@
 import java.util.Random;
 public class Dog {
   private String name,breed,tA,tB,gender = "null";
-  private int age,data,genome = 1;
+  private int age,genome = 1;
+  private int data = 0x0
   private boolean genomeInitialized = false;
   private Random rand = new Random();
+  public float[] multipliers = {1,1,1,1,1};
   /**
     GENE description(starting from least sig):
     breed/species
@@ -20,8 +22,8 @@ public class Dog {
   **/
   /**
     SKILLS are stored in arrays, which are:
-    0 - name recognition
-    1 - 
+    0 - fetch
+    1 - barrel roll
     2 - 
     3 - 
     4 - 
@@ -36,6 +38,29 @@ public class Dog {
     D - 
     E - 
     F - 
+  **/
+  /**
+	ACTIVITIES are:            *used in play a game minigame
+	0 - nothing
+	1 - sleeping
+	2 - eating
+	3 - play
+	4 - teach
+	5 - 
+	6 - 
+	7 - 
+	8 - 
+	9 - 
+	A - 
+	B - 
+	C - 
+	D - 
+	E - 
+	F - learning a trick(trigger minigame)
+  **/
+  /**
+	MULTIPLIER array:
+	
   **/
   public Dog() {
     name = new String("Clifford");
@@ -141,6 +166,9 @@ public class Dog {
     int bit = inp >> (digit-1)*4;
     return bit & 0x000F;
     //return bit;
+  }
+  public int readStamina() {
+	  
   }
   public void summary() {
     if(genomeInitialized){

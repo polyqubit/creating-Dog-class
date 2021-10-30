@@ -58,6 +58,21 @@ public class starter{
 		  if(inp.equals("1")){
 			adopted.summary();
 		  }
+		  //activities
+		  while(true) {
+			  System.out.println("What would you like to do with "+adopted.readStat(0)+"?");
+			  System.out.println("[Options: feed, teach, play, exit]")
+			  inp = sc.nextLine();
+			  switch(inp) {
+				  case "feed":
+				  break;
+				  case "teach":
+				  break;
+				  case "play":
+				  break;
+			  }
+			  if(inp.equals("exit")) {System.out.println(adopted.readStat(0)+" is sad to see you go.");break;}
+		  }
         break;
         case "2":
           System.out.println("Sorry, we don't have any of those at the moment...(i was lazy lol)");
