@@ -24,11 +24,11 @@ public class Dog {
     SKILLS are stored in arrays, which are:
     0 - fetch
     1 - barrel roll
-    2 - 
-    3 - 
-    4 - 
-    5 - 
-    6 - 
+    2 - stand
+    3 - jump
+    4 - tug of war
+    5 - high five(paw)
+    6 - idk man i just want to go to sleep
     7 - 
     8 - 
     9 - 
@@ -40,7 +40,7 @@ public class Dog {
     F - 
   **/
   /**
-	ACTIVITIES are:            *used in play a game minigame
+	ACTIVITIES are:
 	0 - nothing
 	1 - sleeping
 	2 - eating
@@ -56,11 +56,15 @@ public class Dog {
 	C - 
 	D - 
 	E - 
-	F - learning a trick(trigger minigame)
+	F - 
   **/
   /**
 	MULTIPLIER array:
-	
+	0 - friendship gain
+	1 - 
+	2 - 
+	3 - 
+	4 - 
   **/
   public Dog() {
     name = new String("Clifford");
@@ -184,7 +188,7 @@ public class Dog {
 2 - glutton, hunger gain 2x faster
 3 - aggressive, gains friendship 0.5x as fast
 4 - stubborn, takes 1.5x as many repetitions to teach a trick
-5 - hyperactive, gains 2x friendship from activities
+5 - hyperactive, gains 2x friendship from activities, hunger gain 1.5x faster
 6 - mrpoole(sweaty), plays LoL
 7 - muscular, 1.5x stamina, 1.5x friendship from activities
 8 - smart, takes 0.5x as many repetitions to teach a trick
