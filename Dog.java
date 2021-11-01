@@ -1,13 +1,17 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Dog {
   private String name,breed,tA,tB,gender = "null";
   private int age,genome = 1;
-  private double stamina = 255;
-  private double hunger = 255; //full is 255
-  private double friendship = 0;
+  public String g1,g2 = "null";
+  public double stamina = 255; //full is 255
+  public double hunger = 255; //full is 255
+  public double friendship = 0; //max is 255
   private boolean genomeInitialized = false;
   private Random rand = new Random();
   public float[] multipliers = {1,1,1,1,1,1};
+  public boolean[] skills = {false,false,false,false,false,false};
+  private Scanner sc = new Scanner(System.in);
   /**
     GENE description(starting from least sig):
     breed/species
@@ -144,8 +148,8 @@ public class Dog {
 		case 8: case 9: case 14: tB = new String("Lazy"); multipliers[2]*=0.75; multipliers[5]*=0.5; break;
 		default: tB = new String("Friendly"); break;
 	}
-	if((d%2)==0) {gender = new String("Male");}
-	else {gender = new String("Female");}
+	if((d%2)==0) {gender = new String("Male"); g1 = new String("him"); g2 = new String("he");}
+	else {gender = new String("Female"); g1 = new String("her"); g2 = new String("she");}
   }
   public String readStat(int inp) {
     switch(inp) {
@@ -169,7 +173,222 @@ public class Dog {
     //return bit;
   }
   public int readStamina() {
-	return nibbleExtract(data,3);
+	return (int)stamina;
+  }
+  public int readHunger() {
+	return (int)hunger;  
+  }
+  public int readFriendship() {
+	return (int)friendship;
+  }
+  public void teachSkill(String inp) {
+	  boolean learned = false;
+	  int check = 0;
+	  switch(inp) {
+		case "fetch":
+			if(!skills[0]){
+				System.out.println("Throw a ball by pressing enter. After enough tries "+name+" will successfully return the ball.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nWoof?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Woof!\n"+name+" returns the ball.");
+						learned = true;
+						skills[0] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+		case "barrel roll":
+			if(!skills[1]) {
+				System.out.println("Roll on the ground by pressing enter. After enough tries "+name+" will successfully roll over.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nWoof?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Woof!\n"+name+" rolls over.");
+						learned = true;
+						skills[1] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+		case "stand":
+			if(!skills[2]) {
+				System.out.println("You are seated on the ground. To stand up, press enter, then press enter again to sit down. After enough tries "+name+" will successfully stand up.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nWoof?");
+					sc.nextLine();
+					System.out.println("\nArf?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Woof!\n"+name+" stands up.");
+						learned = true;
+						skills[2] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+		case "jump":
+			if(!skills[3]) {
+				System.out.println("Jump by pressing enter. After enough tries "+name+" will successfully jump.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nRrf?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Woof!\n"+name+" jumps.");
+						learned = true;
+						skills[3] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+		case "high five":
+			if(!skills[4]) {
+				System.out.println("Touch "+name+"'s paw to your hand by pressing enter. After enough tries "+name+" will successfully give you a high five.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nWoof?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Woof!\n"+name+" bats your hand.");
+						learned = true;
+						skills[4] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+		case "tug of war":
+			if(!skills[5]) {
+				System.out.println("You place a rope in front of "+name+". Press enter to tug at the rope. After enough tries "+name+" will tug the rope back.");
+				while(!learned) {
+					sc.nextLine();
+					System.out.println("\nRuff?");
+					check = rand.nextInt((int)(20*multipliers[3]));
+					if(check==0) {
+						System.out.println("Arrf!\n"+name+" yanks the rope from your hand.");
+						learned = true;
+						skills[5] = true;
+					}
+				}
+			}else{System.out.println(name+" has already learned this trick.");}
+		break;
+	  }
+  }
+  public void play(String inp) {
+	  int randomEvent = rand.nextInt(3);
+	  switch(inp) {
+		  case "fetch":
+			if(skills[0]) {
+				System.out.println("Press enter to throw a ball.");
+				sc.nextLine();
+				switch(randomEvent) {
+					case 0:
+						System.out.println(name+" returns the ball.");
+					break;
+					case 1:
+						System.out.println(name+" returns two balls. Where did this one come from?");
+					break;
+					case 2:
+						System.out.println(name+" brings back a stick. You spend some time throwing this instead");
+					break;
+				}
+				stamina -= 3;
+				hunger -= 3;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+		  case "barrel roll":
+			if(skills[1]) {
+				System.out.println("Press enter to have "+name+" roll over.");
+				switch(randomEvent) {
+					case 0:
+						System.out.println(name+" rolls over.");
+					break;
+					case 1:
+						System.out.println(name+" does a backflip. When did "+g2+" learn that?");
+					break;
+					case 2:
+						System.out.println(name+" does a barrel roll. And another. And another. Before long you are rolling too.");
+					break;
+				}
+				stamina -= 1;
+				hunger -= 1;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+		  case "stand":
+			if(skills[2]) {
+				System.out.println("Press enter to raise your hand.");
+				switch(randomEvent) {
+					case 0:
+						System.out.println(name+" stands up at your cue.");
+					break;
+					case 1:
+						System.out.println(name+" stands up and walks away. "+g2+"'s surpassed caninehood.");
+					break;
+					case 2:
+						System.out.println(name+" stands up and shakes your hand. Unknowingly you have agreed to transfer your assets to "+name+"'s company.");
+					break;
+				}
+				stamina -= 1;
+				hunger -= 1;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+		  case "jump":
+			if(skills[3]) {
+				System.out.println("Press enter to jump.");
+				switch(randomEvent) {
+					case 0:
+						System.out.println(name+" jumps with you.");
+					break;
+					case 1:
+						System.out.println(name+" jumps but does not fall back down. You stare awkwardly at the levitating dog.");
+					break;
+					case 2:
+						System.out.println(name+" jumps onto your back. You are wrestled to the ground.");
+					break;
+				}
+				stamina -= 2;
+				hunger -= 2;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+		  case "high five":
+			if(skills[5]) {
+				System.out.println("Press enter to put out your hand.");
+				switch(randomEvent) {
+					case 0:
+						System.out.println(name+" gives you a high five!");
+					break;
+					case 1:
+						System.out.println(name+" mistakes your action as a arm wrestle challenge and forces your hand to the ground.");
+					break;
+					case 2:
+						System.out.println(name+" bites your hand, thinking you meant to offer "+g1+" a treat.");
+					break;
+				}
+				stamina -= 1;
+				hunger -= 1;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+		  case "tug of war":
+			if(skills[6]) {
+				System.out.println("Press enter to place a rope in front of "+name+".");
+				switch(randomEvent) {
+					case 0:
+					break;
+					case 1:
+					break;
+					case 2:
+					break;
+				}
+				stamina -= 3;
+				hunger -= 3;
+			}else{System.out.println(name+" has not learned this yet.");}
+		  break;
+	  }
   }
   public void summary() {
     if(genomeInitialized){
@@ -177,6 +396,9 @@ public class Dog {
 		System.out.println("Your dog is "+age+" years old and is a "+breed);
     }
   }
+  //unused methods
+  public void bark() {System.out.println(name+ "barks!");}
+  public boolean isSleeping() {return rand.nextBoolean();}
 }
 
 /**

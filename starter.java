@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class starter{
 	public static void main(String args[]) {
     Scanner sc = new Scanner(System.in);
+	System.out.println("Unfinished items:\nMultiple pets\nOther animals\nMinigames\n");
     System.out.println("Welcome to PetCo! Are you here to adopt an animal?\n[Type 1,2, or 3 for a dog, cat, or bird, or any other letter to quit.]");
     String inp = sc.nextLine();
 	  int adorpt = 0;
@@ -10,10 +11,10 @@ public class starter{
       switch(inp) {
         case "1":
           System.out.println("Great! Follow me this way");
-          Dog A = new Dog("A",0);Dog B = new Dog("B",0);Dog C = new Dog("C",0);
+          Dog A = new Dog("A",1);Dog B = new Dog("B",1);Dog C = new Dog("C",1);
           A.setGenome();B.setGenome();C.setGenome();
           while(true) {
-            System.out.println("We have 3 newborn pups for you to take a look at:\n[Type 1,2,3 to look at each]");
+            System.out.println("We have 3 dogs for you to take a look at:\n[Type 1,2,3 to look at each]");
 		        inp = sc.nextLine();
             System.out.println("Good Choice!");
             switch(inp) {
@@ -36,7 +37,7 @@ public class starter{
               break;
             }
           }
-          Dog adopted = new Dog("D",0);
+          Dog adopted = new Dog("D",1);
           switch(adorpt) {
             case 1:
               System.out.println("You've adopted a "+A.readStat(1)+"!\nWhat would you like to name your dog?");
@@ -60,18 +61,35 @@ public class starter{
 		  }
 		  //activities
 		  while(true) {
-			  System.out.println("What would you like to do with "+adopted.readStat(0)+"?");
-			  System.out.println("[Options: feed, teach, play, exit]");
+			  System.out.println("\nWhat would you like to do with "+adopted.readStat(0)+"?");
+			  System.out.println("[Options: feed, teach, play, rest, exit]");
 			  inp = sc.nextLine();
 			  switch(inp) {
 				  case "feed":
+					adopted.hunger += 20;
+					if(adopted.hunger > 255) {
+						adopted.hunger = 255;
+						System.out.println(adopted.readStat(0)+" is full!");
+					}
 				  break;
 				  case "teach":
+					System.out.println("What will you teach "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
+					adopted.teachSkill(sc.nextLine());
 				  break;
 				  case "play":
+					System.out.println("What would you like to play with "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
+					adopted.play(sc.nextLine());
+				  break;
+				  case "rest":
+					System.out.println(adopted.readStat(0)+" rests up.");
+					adopted.stamina += 40;
+					if(adopted.stamina > 255) {adopted.stamina = 255;}
 				  break;
 			  }
-			  if(inp.equals("exit")) {System.out.println(adopted.readStat(0)+" is sad to see you go.");break;}
+			  if(inp.equals("exit")||adopted.hunger==0) {System.out.println(adopted.readStat(0)+" is sad to see you go.");break;}
+			  if((adopted.hunger==0)||(adopted.stamina==0)) {System.out.println(adopted.readStat(0)+" passes out from overexertion.");break;}
+			  else if(adopted.stamina<60) {System.out.println(adopted.readStat(0)+" is getting tired...maybe you should give them a break.");}
+			  else if(adopted.hunger<60) {System.out.println(adopted.readStat(0)+" is getting hungry...maybe you should give "+adopted.g1+" a treat.");}
 		  }
         break;
         case "2":
