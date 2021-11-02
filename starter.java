@@ -15,7 +15,7 @@ public class starter{
           A.setGenome();B.setGenome();C.setGenome();
           while(true) {
             System.out.println("We have 3 dogs for you to take a look at:\n[Type 1,2,3 to look at each]");
-		        inp = sc.nextLine();
+		    inp = sc.nextLine();
             System.out.println("Good Choice!");
             switch(inp) {
               case "1":
@@ -53,6 +53,10 @@ public class starter{
             break;
           }
 		  inp = sc.nextLine();
+		  while(inp.equals("")) {
+			  System.out.println("Invalid name. Enter a new one");
+			  inp = sc.nextLine();
+		  }
           adopted.rename(inp);
 		  System.out.println("Congratulations on adopting a dog! Would you like to hear about its personality?\n[Press 1 to read its summary or anything else to continue]");
 		  inp = sc.nextLine();
@@ -66,18 +70,19 @@ public class starter{
 			  inp = sc.nextLine();
 			  switch(inp) {
 				  case "feed":
+					System.out.println("You feed "+adopted.readStat(0)+".");
 					adopted.hunger += 20;
 					if(adopted.hunger > 255) {
 						adopted.hunger = 255;
-						System.out.println(adopted.readStat(0)+" is full!");
+						if(adopted.hunger>270) {System.out.println(adopted.readStat(0)+" is full!");}
 					}
 				  break;
 				  case "teach":
-					System.out.println("What will you teach "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
+					System.out.println("\nWhat will you teach "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
 					adopted.teachSkill(sc.nextLine());
 				  break;
 				  case "play":
-					System.out.println("What would you like to play with "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
+					System.out.println("\nWhat would you like to play with "+adopted.readStat(0)+"?\n[Options: fetch, barrel roll, stand, jump, high five, tug of war]");
 					adopted.play(sc.nextLine());
 				  break;
 				  case "rest":

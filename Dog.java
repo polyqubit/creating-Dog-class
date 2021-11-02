@@ -196,6 +196,8 @@ public class Dog {
 						System.out.println("Woof!\n"+name+" returns the ball.");
 						learned = true;
 						skills[0] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -211,6 +213,8 @@ public class Dog {
 						System.out.println("Woof!\n"+name+" rolls over.");
 						learned = true;
 						skills[1] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -228,6 +232,8 @@ public class Dog {
 						System.out.println("Woof!\n"+name+" stands up.");
 						learned = true;
 						skills[2] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -243,6 +249,8 @@ public class Dog {
 						System.out.println("Woof!\n"+name+" jumps.");
 						learned = true;
 						skills[3] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -258,6 +266,8 @@ public class Dog {
 						System.out.println("Woof!\n"+name+" bats your hand.");
 						learned = true;
 						skills[4] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -273,6 +283,8 @@ public class Dog {
 						System.out.println("Arrf!\n"+name+" yanks the rope from your hand.");
 						learned = true;
 						skills[5] = true;
+						stamina -= 10;
+						hunger -= 10;
 					}
 				}
 			}else{System.out.println(name+" has already learned this trick.");}
@@ -297,8 +309,8 @@ public class Dog {
 						System.out.println(name+" brings back a stick. You spend some time throwing this instead");
 					break;
 				}
-				stamina -= 3;
-				hunger -= 3;
+				stamina -= 15;
+				hunger -= 15;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 		  case "barrel roll":
@@ -315,8 +327,8 @@ public class Dog {
 						System.out.println(name+" does a barrel roll. And another. And another. Before long you are rolling too.");
 					break;
 				}
-				stamina -= 1;
-				hunger -= 1;
+				stamina -= 5;
+				hunger -= 5;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 		  case "stand":
@@ -333,8 +345,8 @@ public class Dog {
 						System.out.println(name+" stands up and shakes your hand. Unknowingly you have agreed to transfer your assets to "+name+"'s company.");
 					break;
 				}
-				stamina -= 1;
-				hunger -= 1;
+				stamina -= 5;
+				hunger -= 5;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 		  case "jump":
@@ -351,12 +363,12 @@ public class Dog {
 						System.out.println(name+" jumps onto your back. You are wrestled to the ground.");
 					break;
 				}
-				stamina -= 2;
-				hunger -= 2;
+				stamina -= 10;
+				hunger -= 10;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 		  case "high five":
-			if(skills[5]) {
+			if(skills[4]) {
 				System.out.println("Press enter to put out your hand.");
 				switch(randomEvent) {
 					case 0:
@@ -369,23 +381,27 @@ public class Dog {
 						System.out.println(name+" bites your hand, thinking you meant to offer "+g1+" a treat.");
 					break;
 				}
-				stamina -= 1;
-				hunger -= 1;
+				stamina -= 5;
+				hunger -= 5;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 		  case "tug of war":
-			if(skills[6]) {
+			if(skills[5]) {
 				System.out.println("Press enter to place a rope in front of "+name+".");
 				switch(randomEvent) {
 					case 0:
+						System.out.print(name+" pulls at the rope and you pull back. ");
+						if(rand.nextBoolean()) {System.out.println("You win! It was pretty close though.");} else {System.out.println("You lost! It was pretty close though.");}
 					break;
 					case 1:
+						System.out.println(name+" yanks the rope extremely hard. You can feel the burn for hours.");
 					break;
 					case 2:
+						System.out.println(name+" does not like this rope. You leave for the hardware store to buy another rope, not knowing that "+name+" has ravaged your pantry,");
 					break;
 				}
-				stamina -= 3;
-				hunger -= 3;
+				stamina -= 15;
+				hunger -= 15;
 			}else{System.out.println(name+" has not learned this yet.");}
 		  break;
 	  }
